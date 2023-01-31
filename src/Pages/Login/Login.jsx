@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './login.css';
 import { Navigate } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { getLogin } from "../../service/API";
+import { getToken } from "../../redux/token";
 
 
 function Login() {
@@ -8,18 +11,43 @@ function Login() {
       // State
       let [loginErreur, setLoginErreur] = useState("");
       let [loginStatus, setLoginStatus] = useState(0);
-
       let [email, setEmail] = useState("");
       let [password, setPassword] = useState("");
       let [remember, setRememberMe] = useState(false);
 
+      const token = useSelector((state) => state.token.value);
+      useEffect(() => {
+            if(token === localStorage.getItem("token")) {
+                  ajoutToken(localStorage.getItem("token"));
+            }
+      });
 
-      const handleSubmit = (event) => {
-            event.preventDefault();
+      const handleSubmit = (e) => {
+            e.preventDefault();
             console.log('submited')
-            
+
+            const login = getLogin({"email": email, "password": password});
+            login.then(obj => {
+                  if(obj.status !== 400) {
+                        setLoginStatus(obj.status);
+                        ajoutToken(obj.token);
+                  } else {
+                        setLoginErreur(obj.message);
+                  }
+            });
       }
 
+      // token
+      const dispatch = useDispatch();
+      const ajoutToken = (token) => {
+          if(remember === true) {
+            localStorage.setItem("token", JSON.stringify(token));
+          }
+          dispatch(getToken(token));
+          console.log("token")
+      }
+
+      
 
       return (
 
