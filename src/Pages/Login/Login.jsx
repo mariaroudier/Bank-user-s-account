@@ -18,19 +18,18 @@ function Login() {
       const token = useSelector((state) => state.token.value);
       useEffect(() => {
             if(token === localStorage.getItem("token")) {
-                  ajoutToken(localStorage.getItem("token"));
+                  addToken(localStorage.getItem("token"));
             }
       });
 
       const handleSubmit = (e) => {
             e.preventDefault();
-            console.log('submited')
 
             const login = getLogin({"email": email, "password": password});
             login.then(obj => {
                   if(obj.status !== 400) {
                         setLoginStatus(obj.status);
-                        ajoutToken(obj.token);
+                        addToken(obj.token);
                   } else {
                         setLoginErreur(obj.message);
                   }
@@ -39,16 +38,19 @@ function Login() {
 
       // token
       const dispatch = useDispatch();
-      const ajoutToken = (token) => {
+      const addToken = (token) => {
           if(remember === true) {
             localStorage.setItem("token", JSON.stringify(token));
           }
           dispatch(getToken(token));
-          console.log("token")
+          console.log(token)
       }
 
+      if(token !== 0 || loginStatus === 200 || token === localStorage.getItem("token")){
+            console.log(token)
+            return <Navigate to="/profil" /> 
+      }
       
-
       return (
 
             <main className='main bg-dark'>
@@ -58,11 +60,11 @@ function Login() {
                         <form name="sign-in" onSubmit={handleSubmit}>
                               <div className="input-wrapper">
                                     <label htmlFor="username">Username</label>
-                                    <input type="text" id="username" />
+                                    <input type="text" id="username" onChange={e => setEmail(e.target.value)} />
                               </div>
                               <div className="input-wrapper">
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" id="password" />
+                                    <input type="password" id="password" onChange={e => setPassword(e.target.value)} />
                               </div>
                               <div className="input-remember">
                                     <input type="checkbox" name="remember-me" />
