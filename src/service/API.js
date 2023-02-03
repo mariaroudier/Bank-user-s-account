@@ -4,7 +4,7 @@ import { getLoginData, getLoginFetchData } from "./API-check";
 /* Login */
 export const getLogin = async (inputData) => {
       console.log(inputData)
-      const fetchResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
+      const fetchResponse = await fetch("http://localhost:3001/api/v1/user/login", {
             body: JSON.stringify(inputData),
             headers: {
                   "Content-Type": "application/json",

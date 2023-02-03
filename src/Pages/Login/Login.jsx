@@ -36,6 +36,10 @@ function Login() {
             });
       }
 
+      const handleRemember = (event) => {
+            setRememberMe(event.target.checked);
+      }
+
       // token
       const dispatch = useDispatch();
       const addToken = (token) => {
@@ -43,11 +47,9 @@ function Login() {
             localStorage.setItem("token", JSON.stringify(token));
           }
           dispatch(getToken(token));
-          console.log(token)
       }
 
       if(token !== 0 || loginStatus === 200 || token === localStorage.getItem("token")){
-            console.log(token)
             return <Navigate to="/profil" /> 
       }
       
@@ -56,7 +58,7 @@ function Login() {
             <main className='main bg-dark'>
                  <section className="sign-in-content">
                         <i className="fa fa-user-circle sign-in-icon"></i>
-                        <h1>Sign In</h1>
+                        <h1 className="form-title">Sign In</h1>
                         <form name="sign-in" onSubmit={handleSubmit}>
                               <div className="input-wrapper">
                                     <label htmlFor="username">Username</label>
@@ -67,11 +69,11 @@ function Login() {
                                     <input type="password" id="password" onChange={e => setPassword(e.target.value)} />
                               </div>
                               <div className="input-remember">
-                                    <input type="checkbox" name="remember-me" />
+                                    <input type="checkbox" name="remember-me" onChange={handleRemember}/>
                                     <label htmlFor="remember-me">Remember me</label>
                               </div>
                               <div>
-                                    {/* {loginErreur} */}
+                                    {loginErreur}
                               </div>
                               <button className="sign-in-button" type="submit">Sign In</button>
                         </form>

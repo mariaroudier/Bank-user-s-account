@@ -1,8 +1,16 @@
 body {
   margin: 0;
+  height: auto;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #2c3e50;
 
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
 }
 
 code {
