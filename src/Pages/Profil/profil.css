@@ -1,0 +1,17 @@
+.header {
+      color: #fff;
+      width: 100%;
+}
+
+.greetings-title {
+      text-align: center;
+}
+
+.accounts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-left: 112px;
+      padding-right: 112px;
+      gap: 30px;
+}

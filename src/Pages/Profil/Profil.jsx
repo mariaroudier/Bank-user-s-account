@@ -2,6 +2,7 @@ import React from 'react';
 import './profil.css';
 import {useNavigate} from 'react-router-dom';
 import BankAccount from '../../Components/BankAccount/BankAccount'
+import { balance } from '../../data/amount'
 
 function Profil() {
 return(
@@ -24,14 +25,19 @@ return(
 //     </nav>
 
 
-    <main class="main bg-dark">
-      <div class="header">
-            <h1>Welcome back<br/>Tony Jarvis!</h1>
-            <button class="edit-button">Edit Name</button>
+    <main className="main bg-dark">
+      <div className="header">
+            <h1 className='greetings-title'>Welcome back<br/>Tony Jarvis!</h1>
+            <button className="edit-button">Edit Name</button>
       </div>
-      <h2 class="sr-only">Accounts</h2>
-      // array.map return component
-      <BankAccount type="type" cardNumber="x4747" amount="amount"/>
+      <h2 className="sr-only">Accounts</h2>
+      <section className='accounts'>
+            {     
+                  balance.map(el => {
+                        return <BankAccount type={el.type} cardNumber={`x${el.cardNumber}`}  amount={el.balance} description={el.description} key={el.key}/>
+                  })
+            }
+      </section>
 
       
       </main>

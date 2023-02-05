@@ -1,20 +1,23 @@
 const balance = [
     {
+        key: 1,
         type: "Argent Bank Checking",
         cardNumber: 8349,
-        balance: 2082.79,
+        balance: "2,082.79",
         description: "Available Balance"
     },
     {
+        key: 2,
         type: "Argent Bank Savings",
         cardNumber: 6712,
-        balance: 10928.42,
+        balance: "10,928.42",
         description: "Available Balance"
     },
     {
+        key: 3,
         type: "Argent Bank Credit Card",
         cardNumber: 8349,
-        balance: 184.30,
+        balance: "184.30",
         description: "Current Balance"
     }
 
@@ -46,3 +49,7 @@ const balance = [
 //           <button class="transaction-button">View transactions</button>
 //         </div>
 //       </section> */
+
+module.exports = {
+    balance
+}
