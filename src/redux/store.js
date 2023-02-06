@@ -1,6 +1,6 @@
 
 import { configureStore } from "@reduxjs/toolkit";
-import nameReducer from './nameReducer';
+import nameReducer from './firstNameReducer';
 import tokenReducer from './token'
 
 export const store = configureStore({

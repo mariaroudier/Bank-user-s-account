@@ -1,10 +1,31 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getToken } from "../../redux/token";
+import { loginFetch } from "../../service/API";
+import { getFirstName } from "../../redux/firstNameReducer";
 import { NavLink } from 'react-router-dom';
 import logo from './argentBankLogo.png'
 import './header.css'
 
 
-function Header({firstName}) {
+function Header() {
+      const firstName = useSelector((state) => state.firstName.value);
+      const token = useSelector((state) => state.token.value);
+  
+  
+      // Use Effect
+      const dispatch = useDispatch();
+      useEffect(() => {
+          if(token === localStorage.getItem("token")) {
+              dispatch(getToken(localStorage.getItem("token")));
+              const user = loginFetch(token);
+              user.then(obj => {
+                  dispatch(getFirstName(obj.firstName));
+              });
+          }
+      });
+
       return (
             <nav className="main-nav">
                   <NavLink to="/" className='main-nav-logo'>
@@ -12,11 +33,12 @@ function Header({firstName}) {
                         <h1 className="sr-only">Argent Bank</h1>
                   </NavLink>
                   {
-                        window.location.pathname === '/profil' ? 
+                        token !== 0 ? 
+
                         (     <div>
                                     <NavLink to="/profil" className='main-nav-item'>
                                           <i className="fa fa-user-circle"></i>
-                                          Tony
+                                          Marc
                                     </NavLink>
                                     <NavLink to="/" className='main-nav-item'>
                                           <i className="fa fa-sign-out"></i>
