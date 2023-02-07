@@ -16,7 +16,6 @@ function BankAccount({type,cardNumber,amount,description}) {
                   </div>
             </div>
 // сделать точки запятые между цифрами в сумме на счету
-// добавить валюту знак доллара
       )
 }
 

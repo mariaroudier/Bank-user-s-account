@@ -1,11 +1,13 @@
 
 import { configureStore } from "@reduxjs/toolkit";
-import nameReducer from './firstNameReducer';
+import firstNameReducer from './firstNameReducer';
+import lastNameReducer from './lastNameReducer';
 import tokenReducer from './token'
 
 export const store = configureStore({
       reducer: {
-            firstName: nameReducer,
+            firstName: firstNameReducer,
+            lastName: lastNameReducer,
             token: tokenReducer
       },
 });

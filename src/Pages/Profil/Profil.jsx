@@ -1,13 +1,44 @@
-import React from 'react';
-import './profil.css';
-import BankAccount from '../../Components/BankAccount/BankAccount'
-import { balance } from '../../data/amount'
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { Navigate } from 'react-router-dom';
+import { loginFetch } from "../../service/API";
+import { getFirstName } from "../../redux/firstNameReducer";
+import { getLastName } from "../../redux/lastNameReducer";
+import BankAccount from "../../Components/BankAccount/BankAccount";
+import { balance } from "../../data/amount";
+import "./profil.css";
+
 
 function Profil() {
+      
+      const firstName = useSelector((state) => state.firstName.value);
+      const lastName = useSelector((state) => state.lastName.value)
+      const token = useSelector((state) => state.token.value);
+
+  
+  
+      // Use Effect
+      const dispatch = useDispatch();
+      useEffect(() => {
+                  const user = loginFetch(token);
+                  user.then(obj => {
+                        dispatch(getFirstName(obj.firstName));
+                        dispatch(getLastName(obj.lastName))
+                  });
+      });
+
+
+      if(token === 0){
+            return <Navigate to="/login" />
+      }
+
 return(
     <main className="main bg-dark">
       <div className="header">
-            <h1 className='greetings-title'>Welcome back<br/>Tony Jarvis!</h1>
+            <h1 className='greetings-title'>Welcome back<br/>
+            {firstName} {lastName}!
+            </h1>
             <button className="edit-button">Edit Name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>

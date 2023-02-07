@@ -1,44 +1,42 @@
 
 /* Get login data */
 export function getLoginData(data) {
-    console.log(data)
+
     if (data.status !== 400) {
-        const object = {
+        const obj = {
             status: data.status,
             message: data.message,
-            token: data.token
+            token: data.body.token
         }
-
-        return object;
+        return obj;
     } else {
-
-        const object = {
+        const obj = {
             status: data.status,
             message: data.message,
         }
-        return object;
+        return obj;
     }
 }
 
 
 export function getLoginFetchData(data) {
     if (data.body !== undefined) {
-        const object = {
+        console.log(data)
+        const obj = {
             status: data.status,
             email: data.body.email,
             firstName: data.body.firstName,
             lastName: data.body.lastName
         }
-
-        return object;
+        return obj;
     } else {
-        const object = {
+        const obj = {
             status: 0,
             email: "",
             firstName: "",
-            lastName: ""
+            lastName: "",
         }
-
-        return object;
+        return obj;
     }
+
 }

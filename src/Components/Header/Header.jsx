@@ -12,18 +12,21 @@ import './header.css'
 function Header() {
       const firstName = useSelector((state) => state.firstName.value);
       const token = useSelector((state) => state.token.value);
-  
+
+
   
       // Use Effect
       const dispatch = useDispatch();
       useEffect(() => {
-          if(token === localStorage.getItem("token")) {
-              dispatch(getToken(localStorage.getItem("token")));
-              const user = loginFetch(token);
-              user.then(obj => {
-                  dispatch(getFirstName(obj.firstName));
-              });
-          }
+            if(token === localStorage.getItem("token")) {
+
+                  dispatch(getToken(localStorage.getItem("token")));
+                  const user = loginFetch(token);
+                  user.then(obj => {
+                        dispatch(getFirstName(obj.firstName));
+                  });
+            }
+
       });
 
       return (
@@ -38,7 +41,7 @@ function Header() {
                         (     <div>
                                     <NavLink to="/profil" className='main-nav-item'>
                                           <i className="fa fa-user-circle"></i>
-                                          Marc
+                                          {firstName}
                                     </NavLink>
                                     <NavLink to="/" className='main-nav-item'>
                                           <i className="fa fa-sign-out"></i>
