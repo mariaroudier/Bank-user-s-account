@@ -7,11 +7,10 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login'
+import Logout from './Pages/Logout/Logout'
 import Profil from './Pages/Profil/Profil';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
-
-
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,7 +22,7 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profil" element={<Profil />} />
-        {/* <Route path="/logout" element={<Logout />} /> */}
+        <Route path="/logout" element={<Logout />} />
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
       <Footer />

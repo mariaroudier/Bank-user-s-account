@@ -1,7 +1,7 @@
-import { getLoginData, getLoginFetchData } from "./API-check";
+import { getLoginData, getLoginFetchData, saveProfilData } from "./API-check";
 
 
-/* Login */
+// Login
 export const getLogin = async (inputData) => {
       console.log(inputData)
       const fetchResponse = await fetch("http://localhost:3001/api/v1/user/login", {
@@ -13,10 +13,10 @@ export const getLogin = async (inputData) => {
       })
             .then((response) => response.json());
       // console.clear();
-      return await getLoginData(fetchResponse);
+      return getLoginData(fetchResponse);
 }
 
-/* Authorization */
+// Authorization
 export const loginFetch = async (token) => {
       const URL_API = "http://localhost:3001/api/v1/user/profile";
 
@@ -27,10 +27,25 @@ export const loginFetch = async (token) => {
             },
             method: "POST"
       }).then((response) => response.json());
-
-      return await getLoginFetchData(fetchResponse);
+      console.log(fetchResponse)
+      return getLoginFetchData(fetchResponse);
 }
 
+// Save the new name
+export const saveProfil = async (token, fullName) => {
+      const URL_API = "http://localhost:3001/api/v1/user/profile";
 
+      const saveProfilResponse = await fetch(URL_API, {
+            body: JSON.stringify(fullName),
+            headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": "Bearer" + token
+            },
+            method: "PUT"
+      }).then((response) => response.json());
+
+      // console.clear();
+      return saveProfilData(saveProfilResponse);
+}
 
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
-import { loginFetch } from "../../service/API";
+import { loginFetch, saveProfil } from "../../service/API";
 import { getFirstName } from "../../redux/firstNameReducer";
 import { getLastName } from "../../redux/lastNameReducer";
 import BankAccount from "../../Components/BankAccount/BankAccount";
@@ -15,8 +15,9 @@ function Profil() {
       const firstName = useSelector((state) => state.firstName.value);
       const lastName = useSelector((state) => state.lastName.value)
       const token = useSelector((state) => state.token.value);
-
   
+      const [newFirstName, setNewFirstName] = useState("")
+      const [newLastName, setNewLastName] = useState("")
   
       // Use Effect
       const dispatch = useDispatch();
@@ -28,30 +29,67 @@ function Profil() {
                   });
       });
 
+      const [formHidden, setVisible] = useState(true)
+
+      // to edit the name
+      const handleEdit = () => {
+            setVisible(!formHidden) 
+      }
+
+      // to save
+      const handleSave = () => {
+            setVisible(true)
+            dispatch(getFirstName(newFirstName));
+            dispatch(getLastName(newLastName));
+            const newNameData = 
+                  {
+                        "firstName": newFirstName, 
+                        "lastName": newLastName
+                  };
+            saveProfil(token, newNameData);
+      }
+
+
+      // to cancel
+      const handleCancel = () => {
+            setVisible(true)
+      }
 
       if(token === 0){
             return <Navigate to="/login" />
       }
 
-return(
-    <main className="main bg-dark">
-      <div className="header">
-            <h1 className='greetings-title'>Welcome back<br/>
-            {firstName} {lastName}!
-            </h1>
-            <button className="edit-button">Edit Name</button>
-      </div>
-      <h2 className="sr-only">Accounts</h2>
-      <section className='accounts'>
-            {     
-                  balance.map(el => {
-                        return <BankAccount type={el.type} cardNumber={`x${el.cardNumber}`}  amount={el.balance} description={el.description} key={el.key}/>
-                  })
-            }
-      </section>
-
-      
-      </main>
+      return(
+            <main className="main bg-dark">
+                  <div className="header">
+                        <h1 className='greetings'>Welcome back<br/>
+                        <span className="greetings-name" style={{display: formHidden ? 'flex': 'none' }}>{firstName} {lastName}!</span>
+                        </h1>
+                        <button className="edit-button" type="button" onClick={handleEdit} style={{display: formHidden ? 'flex': 'none' }}>Edit Name</button>
+                        <div className="edit-form" style={{display: !formHidden ? 'flex' : 'none' }}>
+                              <form name="edit">
+                                    <div className="edit-input">
+                                          <input type="text" placeholder={firstName} onChange={e => setNewFirstName(e.target.value)} required />
+                                    </div>
+                                    <div className="edit-input">
+                                          <input type="text" placeholder={lastName} onChange={e => setNewLastName(e.target.value)} required />
+                                    </div>
+                              </form>
+                              <div className="btn-form">
+                                    <button type="submit" className="save-button" onClick={handleSave}>Save</button>
+                                    <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
+                              </div>
+                        </div>
+                  </div>
+                  <h2 className="sr-only">Accounts</h2>
+                  <section className='accounts'>
+                        {     
+                              balance.map(el => {
+                                    return <BankAccount type={el.type} cardNumber={`x${el.cardNumber}`}  amount={el.balance} description={el.description} key={el.key}/>
+                              })
+                        }
+                  </section>
+            </main>
 
 
 //   <!-- Code injected by live-server -->
@@ -92,10 +130,7 @@ return(
 // 	}
 // 	// ]]>
 // </script>
-
-
-
-)
+      )
 
 }
 

@@ -19,14 +19,12 @@ function Header() {
       const dispatch = useDispatch();
       useEffect(() => {
             if(token === localStorage.getItem("token")) {
-
                   dispatch(getToken(localStorage.getItem("token")));
                   const user = loginFetch(token);
                   user.then(obj => {
                         dispatch(getFirstName(obj.firstName));
                   });
             }
-
       });
 
       return (
@@ -41,11 +39,11 @@ function Header() {
                         (     <div>
                                     <NavLink to="/profil" className='main-nav-item'>
                                           <i className="fa fa-user-circle"></i>
-                                          {firstName}
+                                          <span className="nav-text">{firstName}</span>
                                     </NavLink>
-                                    <NavLink to="/" className='main-nav-item'>
+                                    <NavLink to="/logout" className='main-nav-item' >
                                           <i className="fa fa-sign-out"></i>
-                                          Sign Out
+                                          <span className="nav-text">Sign Out</span>
                                     </NavLink>
                               </div> 
                         )     :

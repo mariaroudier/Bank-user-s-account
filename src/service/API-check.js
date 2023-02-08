@@ -40,3 +40,11 @@ export function getLoginFetchData(data) {
     }
 
 }
+// save profil data
+export function saveProfilData(data) {
+    const object = {
+        status: data.status,
+        message: data.message,
+    }
+    return object
+}
