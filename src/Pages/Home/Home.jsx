@@ -1,11 +1,9 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
 import './home.css';
 import Feature from '../../Components/Feature/Feature'
 import features from '../../Components/Feature/feature-data.json';
 
 function Home() {
-  // let navigate = useNavigate()
 
   return (
     <main>
@@ -23,13 +21,12 @@ function Home() {
         {
           features.map(el => {
             let icon = `./${el.picture}`
-            
             if(el) {
               return (
-                  <Feature title={el.title} description={el.description} picture={icon} key={el.title}/>
+                <Feature title={el.title} description={el.description} picture={icon} key={el.title}/>
               )
             } else {
-              return ""
+                return ""
             }
           })
         }

@@ -34,5 +34,59 @@
 .features {
   display: flex;
   flex-direction: row;
+}
+
+
+@media screen and (min-width: 416px) and (max-width:768px) {
+  .hero {
+    height: 300px;
+  }
+
+  .hero-content {
+    margin: 0 auto;
+    position: relative;
+    top: 2rem;
+    width: 200px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .hero {
+    height: 250px;
+  }
+
+  .hero-content {
+    position: relative;
+    right: 0;
+    top: 2rem;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .features {
+    flex-direction: column;
+  }
 
 }

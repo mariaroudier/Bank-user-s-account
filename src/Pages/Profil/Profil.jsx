@@ -60,22 +60,18 @@ function Profil() {
       }
 
       return(
-            <main className="main bg-dark">
+            <main className={formHidden ? "main bg-dark" : "main bg-light"}>
                   <div className="header">
-                        <h1 className='greetings'>Welcome back<br/>
+                        <h1 className={formHidden ? "greetings" : "greetings dark-text"}>Welcome back<br/>
                         <span className="greetings-name" style={{display: formHidden ? 'flex': 'none' }}>{firstName} {lastName}!</span>
                         </h1>
                         <button className="edit-button" type="button" onClick={handleEdit} style={{display: formHidden ? 'flex': 'none' }}>Edit Name</button>
-                        <div className="edit-form" style={{display: !formHidden ? 'flex' : 'none' }}>
-                              <form name="edit">
-                                    <div className="edit-input">
-                                          <input type="text" placeholder={firstName} onChange={e => setNewFirstName(e.target.value)} required />
-                                    </div>
-                                    <div className="edit-input">
-                                          <input type="text" placeholder={lastName} onChange={e => setNewLastName(e.target.value)} required />
-                                    </div>
+                        <div className="form-box" style={{display: !formHidden ? 'flex' : 'none' }}>
+                              <form name="edit" className="edit-inputs">
+                                    <input className="input-field" type="text" placeholder={firstName} onChange={e => setNewFirstName(e.target.value)} required />
+                                    <input className="input-field" type="text" placeholder={lastName} onChange={e => setNewLastName(e.target.value)} required />
                               </form>
-                              <div className="btn-form">
+                              <div className="buttons-form">
                                     <button type="submit" className="save-button" onClick={handleSave}>Save</button>
                                     <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
                               </div>
@@ -85,7 +81,7 @@ function Profil() {
                   <section className='accounts'>
                         {     
                               balance.map(el => {
-                                    return <BankAccount type={el.type} cardNumber={`x${el.cardNumber}`}  amount={el.balance} description={el.description} key={el.key}/>
+                                    return <BankAccount type={el.type} cardNumber={`x${el.cardNumber}`}  amount={el.balance} description={el.description} styleType={formHidden ? "dark" : "light" } key={el.key}/>
                               })
                         }
                   </section>

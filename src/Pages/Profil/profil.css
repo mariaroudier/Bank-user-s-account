@@ -1,3 +1,18 @@
+.bg-light {
+      flex: 1;
+      background-color: rgb(223, 230, 237);
+      min-height: 100vh;
+}
+
+.dark-text {
+      color: black;
+      font-weight: 500;
+}
+
+.bold-text {
+      font-weight: 700;
+}
+
 .header {
       color: #fff;
       width: 100%;
@@ -27,7 +42,6 @@
       padding: 10px;
 }
 
-
 .accounts {
       display: flex;
       flex-direction: column;
@@ -35,4 +49,60 @@
       padding-left: 112px;
       padding-right: 112px;
       gap: 30px;
+}
+
+.form-box {
+      display: flex;
+      width: 40%;
+      align-items: center;
+      align-self: center;
+      flex-direction: column;
+      gap: 10px;
+}
+
+.edit-inputs {
+      display: flex;
+      align-self: center;
+      gap: 20px;
+
+}
+
+.input-field {
+      width: 160px;
+      height: 30px;
+      padding: 5px;
+      border-color: rgb(182 197 206);
+      border-style: solid;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+}
+
+.input-field::placeholder {
+      color: rgb(193 207 216);
+      font-size: 17px;
+}
+
+.buttons-form {
+      display: flex;
+      align-self: center;
+      gap: 20px
+}
+
+.save-button,
+.cancel-button {
+      width: 100px;
+      height: 32px;
+      font-weight: 400;
+      border-color: rgb(173 177 236);
+      border-style: solid;
+      border-radius: 5px;
+      color: rgb(98 100 239);
+      background-color: white;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
 }

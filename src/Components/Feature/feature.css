@@ -29,3 +29,16 @@
 .feature-item-text {
       text-align: center;
 }
+
+@media screen and (min-width: 416px) and (max-width:768px) {
+      .feature-item {
+            width: 85%;
+      }
+}
+
+@media screen and (max-width: 415px) {
+      .feature-item {
+            align-self: center;
+            width: 85%;
+      }
+}
