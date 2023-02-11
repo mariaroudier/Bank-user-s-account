@@ -1,12 +1,15 @@
 .bg-dark {
       flex: 1;
       background-color: #12002b;
-      min-height: 100vh;
 }
 
 .sign-in-icon {
       margin-left: 50%;
       transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
 }
 
 .form-title {
@@ -58,3 +61,8 @@
       color: #fff;
       border-style: none;
 }
+
+
+
+
+@media screen and (max-width: 415px) {}

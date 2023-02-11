@@ -54,6 +54,10 @@
       border: none;
       background-color: #00bc77;
       color: #fff;
+      border-style: outset;
+      border-image: initial;
+      border-width: 2px;
+      border-color: #00bc77;
 }
 
 .transaction-light-button {
@@ -70,4 +74,16 @@
       -moz-border-radius: 5px;
       -ms-border-radius: 5px;
       -o-border-radius: 5px;
+}
+
+@media screen and (min-width: 416px) and (max-width:768px) {}
+
+@media screen and (max-width: 415px) {
+
+      .transaction-dark-button,
+      .transaction-light-button {
+            margin-top: 1rem;
+            width: 100%;
+
+      }
 }

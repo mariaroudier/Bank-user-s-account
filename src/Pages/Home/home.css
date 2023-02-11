@@ -87,6 +87,7 @@
 
   .features {
     flex-direction: column;
+    margin-bottom: 72px;
   }
 
 }

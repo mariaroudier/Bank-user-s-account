@@ -3,7 +3,6 @@ import './bankAccount.css'
 
 
 function BankAccount({type,cardNumber,amount,description,styleType}) {
-      console.log(styleType)
       return (
             <div className={styleType === "dark" ? "account" : "account account-light" } >
                   <div className="account-content-wrapper">
