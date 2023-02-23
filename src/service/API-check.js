@@ -17,8 +17,7 @@ export function getLoginData(data) {
         return obj;
     }
 }
-
-
+/* Get Login Fetch */
 export function getLoginFetchData(data) {
     if (data.body !== undefined) {
         console.log(data)
@@ -40,6 +39,7 @@ export function getLoginFetchData(data) {
     }
 
 }
+
 // save profil data
 export function saveProfilData(data) {
     const object = {

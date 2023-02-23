@@ -3,7 +3,6 @@ import { getLoginData, getLoginFetchData, saveProfilData } from "./API-check";
 
 // Login
 export const getLogin = async (inputData) => {
-      console.log(inputData)
       const fetchResponse = await fetch("http://localhost:3001/api/v1/user/login", {
             body: JSON.stringify(inputData),
             headers: {
@@ -12,7 +11,6 @@ export const getLogin = async (inputData) => {
             method: "POST"
       })
             .then((response) => response.json());
-      // console.clear();
       return getLoginData(fetchResponse);
 }
 
@@ -44,7 +42,6 @@ export const saveProfil = async (token, fullName) => {
             method: "PUT"
       }).then((response) => response.json());
 
-      // console.clear();
       return saveProfilData(saveProfilResponse);
 }
 

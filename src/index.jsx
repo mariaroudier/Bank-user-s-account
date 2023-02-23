@@ -23,7 +23,6 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/logout" element={<Logout />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
       <Footer />
     </Provider>
